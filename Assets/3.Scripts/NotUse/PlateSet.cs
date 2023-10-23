@@ -8,11 +8,12 @@ public class PlateSet : MonoBehaviour
 
     MPSController mpsController;
 
-    private void Awake()
+    /*private void Awake()
     {
         mpsController = FindObjectOfType<MPSController>();
-    }
-    private void OnTriggerEnter(Collider other)
+    }*/
+
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Transfer"))
         {
@@ -28,9 +29,9 @@ public class PlateSet : MonoBehaviour
                 mpsController.Stopper();
             }
         }
-    }
+    }*/
 
-    private void OnTriggerStay(Collider other)
+    /*private void OnTriggerStay(Collider other)
     {
         if (!mpsController.isGrip)
         {
@@ -39,5 +40,5 @@ public class PlateSet : MonoBehaviour
                 transform.parent = other.transform;
             }
         }
-    }
+    }*/
 }
