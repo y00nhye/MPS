@@ -17,7 +17,8 @@ public class GripperController : MonoBehaviour
     private bool isOn_V = false;
     private bool isOn_H = false;
 
-    Coroutine gripper = null;
+    Coroutine gripperV = null;
+    Coroutine gripperH = null;
 
     StoreController storeController;
 
@@ -26,41 +27,60 @@ public class GripperController : MonoBehaviour
         storeController = FindObjectOfType<StoreController>();
     }
 
-    public void GripperVBtn()
-    {   
-        isOn_V = !isOn_V;
+    public void GripperVBtn(int state)
+    {
+        if (state == 0)
+        {
+            isOn_V = false;
+        }
+        else if (state == 1)
+        {
+            isOn_V = true;
+        }
+        else if (state == 2)
+        {
+            isOn_V = !isOn_V;
+        }
 
         if (isOn_V) //down 상태일 때
         {
-            if (gripper != null) StopCoroutine(gripper);
+            if (gripperV != null) StopCoroutine(gripperV);
 
-            gripper = StartCoroutine(Gripper_co(gripperV_syl, gripperV_pos[1].position));
+            gripperV = StartCoroutine(Gripper_co(gripperV_syl, gripperV_pos[1].position));
         }
         else //up 상태일 때 
         {
-            if (gripper != null) StopCoroutine(gripper);
+            if (gripperV != null) StopCoroutine(gripperV);
 
-            gripper = StartCoroutine(Gripper_co(gripperV_syl, gripperV_pos[0].position));
+            gripperV = StartCoroutine(Gripper_co(gripperV_syl, gripperV_pos[0].position));
         }
     }
-    public void GripperHBtn()
+    public void GripperHBtn(int state)
     {
-        if (!isOn_V) //수직 이동 실린더가 위로 올라가 있을 때만 동작하도록 제한
+        if (state == 0)
+        {
+            isOn_H = false;
+        }
+        else if (state == 1)
+        {
+            isOn_H = true;
+        }
+        else if (state == 2)
         {
             isOn_H = !isOn_H;
+        }
 
-            if (isOn_H)
-            {
-                if (gripper != null) StopCoroutine(gripper);
+        if (isOn_H)
+        {
+            if (gripperH != null) StopCoroutine(gripperH);
 
-                gripper = StartCoroutine(Gripper_co(gripperH_syl, gripperH_pos[1].position));
-            }
-            else
-            {
-                if (gripper != null) StopCoroutine(gripper);
+            gripperH = StartCoroutine(Gripper_co(gripperH_syl, gripperH_pos[1].position));
+        }
+        else
+        {
+            if (gripperH != null) StopCoroutine(gripperH);
 
-                gripper = StartCoroutine(Gripper_co(gripperH_syl, gripperH_pos[0].position));
-            }
+            gripperH = StartCoroutine(Gripper_co(gripperH_syl, gripperH_pos[0].position));
         }
     }
 
@@ -78,7 +98,8 @@ public class GripperController : MonoBehaviour
 
     public void GripperReset()
     {
-        if (gripper != null) StopCoroutine(gripper);
+        if (gripperV != null) StopCoroutine(gripperV);
+        if (gripperH != null) StopCoroutine(gripperH);
 
         isOn_V = false;
         isOn_H = false;
@@ -86,6 +107,7 @@ public class GripperController : MonoBehaviour
         gripperV_syl.transform.position = gripperV_pos[0].position;
         gripperH_syl.transform.position = gripperH_pos[0].position;
 
-        gripper = null;
+        gripperV = null;
+        gripperH = null;
     }
 }

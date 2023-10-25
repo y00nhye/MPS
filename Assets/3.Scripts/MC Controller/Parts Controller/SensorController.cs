@@ -25,7 +25,7 @@ public class SensorController : MonoBehaviour
 
                 conveyorController.MC_state = 1; //conveyor의 메탈 상태 변경
                 conveyorController.isOn = false; //컨베이어 상태 변경 (정지상태)
-                conveyorController.ConveyorBtn(); //컨베이어 실행
+                conveyorController.ConveyorBtn(2); //컨베이어 실행
             }
         }
     }

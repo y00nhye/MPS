@@ -11,13 +11,16 @@ public class StoreController : MonoBehaviour
 
     Coroutine store = null; //현재 실행중인 코루틴 담는 변수
 
-    private int MC_state = 0; //머신 타겟 위치 설정
+    private int MC_state = 1; //머신 타겟 위치 설정
 
-    public void StoreBtn()
+    public void StoreBtn(int state)
     {
-        if (store != null) StopCoroutine(store);
+        if (state == 1)
+        {
+            if (store != null) StopCoroutine(store);
 
-        store = StartCoroutine(Store_co(MC_state));
+            store = StartCoroutine(Store_co(MC_state));
+        }
     }
 
     IEnumerator Store_co(int state)

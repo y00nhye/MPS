@@ -26,11 +26,22 @@ public class GripController : MonoBehaviour
         }
     }
 
-    public void GripBtn()
+    public void GripBtn(int state)
     {
         if (canGrip) //grip 할 수 있는 상황에서 isGrip 상태 변경
         {
-            isGrip = !isGrip;
+            if (state == 0)
+            {
+                isGrip = false;
+            }
+            else if (state == 1)
+            {
+                isGrip = true;
+            }
+            else if (state == 2)
+            {
+                isGrip = !isGrip;
+            }
 
             if (isGrip) //plate 잡은 상태
             {

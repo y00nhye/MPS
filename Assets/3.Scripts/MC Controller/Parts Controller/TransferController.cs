@@ -21,9 +21,20 @@ public class TransferController : MonoBehaviour
         }
     }
 
-    public void TransferBtn()
+    public void TransferBtn(int state)
     {
-        isOn = !isOn; //on/off 상태 변경
+        if(state == 0)
+        {
+            isOn = false;
+        }
+        else if(state == 1)
+        {
+            isOn = true;
+        }
+        else if(state == 2)
+        {
+            isOn = !isOn;
+        }
 
         if (isOn) //on 상태일 때
         {

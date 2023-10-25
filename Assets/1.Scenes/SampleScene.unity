@@ -894,12 +894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 771b121cc581a7b4e8fa7e379be3f6d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transfer: {fileID: 1947914164}
-  conveyor: {fileID: 300024614}
-  stopper: {fileID: 1930788755}
-  gripper: {fileID: 701134715}
-  grip: {fileID: 701134714}
-  store: {fileID: 578411717}
   plate: {fileID: 259361076492044324}
   supplyPoint: {fileID: 618858857}
 --- !u!1 &154231265
@@ -2015,11 +2009,11 @@ MonoBehaviour:
       - m_Target: {fileID: 578411717}
         m_TargetAssemblyTypeName: StoreController, Assembly-CSharp
         m_MethodName: StoreBtn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2393,7 +2387,7 @@ GameObject:
   - component: {fileID: 326201632}
   - component: {fileID: 326201631}
   m_Layer: 5
-  m_Name: Reset
+  m_Name: Auto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2417,7 +2411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 505.5, y: -40}
+  m_AnchoredPosition: {x: 450, y: -40}
   m_SizeDelta: {x: 120, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &326201631
@@ -2465,8 +2459,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 996144969}
-        m_TargetAssemblyTypeName: ResetMC, Assembly-CSharp
-        m_MethodName: ResetBtn
+        m_TargetAssemblyTypeName: AutoMC, Assembly-CSharp
+        m_MethodName: AutoStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3531,11 +3525,11 @@ MonoBehaviour:
       - m_Target: {fileID: 701134714}
         m_TargetAssemblyTypeName: GripController, Assembly-CSharp
         m_MethodName: GripBtn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4688,8 +4682,6 @@ MonoBehaviour:
   - {fileID: 1602790189}
   - {fileID: 964539605}
   - {fileID: 92892352}
-  isOn: 0
-  isReady: 0
 --- !u!1 &596345295
 GameObject:
   m_ObjectHideFlags: 0
@@ -4861,11 +4853,11 @@ MonoBehaviour:
       - m_Target: {fileID: 142712361}
         m_TargetAssemblyTypeName: SupplyerController, Assembly-CSharp
         m_MethodName: SupplyBtn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5149,7 +5141,6 @@ GameObject:
   m_Component:
   - component: {fileID: 701134712}
   - component: {fileID: 701134713}
-  - component: {fileID: 701134715}
   - component: {fileID: 701134714}
   m_Layer: 0
   m_Name: Grip_Ver_Mov
@@ -5206,27 +5197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plate: {fileID: 259361076492044324}
---- !u!114 &701134715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701134711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 589a52e0fa9d3ff4f92bb536024d2aff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  gripperV_syl: {fileID: 701134711}
-  gripperH_syl: {fileID: 457886268}
-  gripperV_pos:
-  - {fileID: 1001249322}
-  - {fileID: 806972227}
-  gripperH_pos:
-  - {fileID: 373020553}
-  - {fileID: 1912123878}
 --- !u!1 &701169820
 GameObject:
   m_ObjectHideFlags: 0
@@ -6485,7 +6455,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: RESET
+  m_Text: Auto
 --- !u!222 &855034653
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7097,14 +7067,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 701134715}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GripperController, Assembly-CSharp
         m_MethodName: GripperHBtn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7616,17 +7586,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 996144967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b5d3fd21d453604a8537dab19459497, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ceedcadd97f8f9409138408ff890543, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  supplyer: {fileID: 142712361}
   transfer: {fileID: 1947914164}
   conveyor: {fileID: 300024614}
-  stopper: {fileID: 1930788755}
-  gripper: {fileID: 701134715}
+  gripper: {fileID: 1671908969}
   grip: {fileID: 701134714}
   store: {fileID: 578411717}
-  plate: {fileID: 259361076492044324}
-  binPoint: {fileID: 1229131717}
+  dbData: 00000000000000000000000000000000000000000000000000000000
 --- !u!1 &1001249321
 GameObject:
   m_ObjectHideFlags: 0
@@ -9242,11 +9211,11 @@ MonoBehaviour:
       - m_Target: {fileID: 1947914164}
         m_TargetAssemblyTypeName: TransferController, Assembly-CSharp
         m_MethodName: TransferBtn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -11907,6 +11876,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1671908968}
+  - component: {fileID: 1671908969}
   m_Layer: 0
   m_Name: Gripper Syl
   m_TagString: Untagged
@@ -11931,6 +11901,27 @@ Transform:
   m_Father: {fileID: 996144968}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1671908969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671908967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589a52e0fa9d3ff4f92bb536024d2aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  gripperV_syl: {fileID: 701134711}
+  gripperH_syl: {fileID: 457886268}
+  gripperV_pos:
+  - {fileID: 1001249322}
+  - {fileID: 806972227}
+  gripperH_pos:
+  - {fileID: 373020553}
+  - {fileID: 1912123878}
 --- !u!1 &1695260105
 GameObject:
   m_ObjectHideFlags: 0
@@ -13371,6 +13362,65 @@ Transform:
   m_Father: {fileID: 1072661942}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1922318228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1922318230}
+  - component: {fileID: 1922318229}
+  - component: {fileID: 1922318231}
+  m_Layer: 0
+  m_Name: DBManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1922318229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922318228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90df29efa2874c49ad206e65d03ed34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gpio: 0100000
+--- !u!4 &1922318230
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922318228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1922318231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922318228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399b45a01b44aaa4ab705f6ac549fe8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Idata_array: 00000000000000000000000000000000000000000000000000000000
 --- !u!1 &1926826620
 GameObject:
   m_ObjectHideFlags: 0
@@ -14564,14 +14614,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 701134715}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GripperController, Assembly-CSharp
         m_MethodName: GripperVBtn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -14882,11 +14932,11 @@ MonoBehaviour:
       - m_Target: {fileID: 300024614}
         m_TargetAssemblyTypeName: ConveyorController, Assembly-CSharp
         m_MethodName: ConveyorBtn
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

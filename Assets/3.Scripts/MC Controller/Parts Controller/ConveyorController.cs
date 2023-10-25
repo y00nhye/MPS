@@ -26,11 +26,22 @@ public class ConveyorController : MonoBehaviour
         }
     }
 
-    public void ConveyorBtn()
+    public void ConveyorBtn(int state)
     {
         if (transform.Find("Plate") != null) //plate 가 자식으로 들어왔을 때 동작
         {
-            isOn = !isOn;
+            if (state == 0)
+            {
+                isOn = false;
+            }
+            else if (state == 1)
+            {
+                isOn = true;
+            }
+            else if (state == 2)
+            {
+                isOn = !isOn;
+            }
 
             if (isOn) //on 상태일 때
             {
