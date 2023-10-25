@@ -86,14 +86,17 @@ public class GripperController : MonoBehaviour
 
     IEnumerator Gripper_co(GameObject Syl, Vector3 pos)
     {
-        while (Vector3.Distance(transform.position, pos) > 0.01f)
+        while (Vector3.Distance(Syl.transform.position, pos) > 0.01f)
         {
             Syl.transform.position = Vector3.MoveTowards
                 (Syl.transform.position, pos, moveSpeed * Time.deltaTime);
 
             yield return null;
         }
+
         Syl.transform.position = pos;
+
+        AutoMC.Instance.isReady = true;
     }
 
     public void GripperReset()

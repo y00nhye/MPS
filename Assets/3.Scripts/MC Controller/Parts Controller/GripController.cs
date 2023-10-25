@@ -55,6 +55,8 @@ public class GripController : MonoBehaviour
 
                 plate.transform.parent = null;
             }
+
+            AutoMC.Instance.isReady = true;
         }
     }
 

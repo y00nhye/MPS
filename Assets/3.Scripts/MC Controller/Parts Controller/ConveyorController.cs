@@ -71,6 +71,10 @@ public class ConveyorController : MonoBehaviour
         {
             plate.SetActive(false);
         }
+        else
+        {
+            AutoMC.Instance.isReady = true;
+        }
     }
 
     public void ConveyorReset()

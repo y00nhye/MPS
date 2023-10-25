@@ -34,6 +34,8 @@ public class SupplyerController : MonoBehaviour
             plate.transform.position = supplyPoint.position;
 
             plate.SetActive(true);
+
+            AutoMC.Instance.isReady = true;
         }
     }
 

@@ -2123,8 +2123,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.13328576, y: 0.2229163, z: 0.441993}
-  m_Center: {x: -1.0934888, y: 0.0011208355, z: 0.024753928}
+  m_Size: {x: 0.16420054, y: 0.2229163, z: 0.441993}
+  m_Center: {x: -1.1089462, y: 0.0011208355, z: 0.024753928}
 --- !u!1 &303287196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,12 +2387,12 @@ GameObject:
   - component: {fileID: 326201632}
   - component: {fileID: 326201631}
   m_Layer: 5
-  m_Name: Auto
+  m_Name: Simul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &326201630
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2460,7 +2460,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 996144969}
         m_TargetAssemblyTypeName: AutoMC, Assembly-CSharp
-        m_MethodName: AutoStart
+        m_MethodName: Simulation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7067,7 +7067,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1671908969}
         m_TargetAssemblyTypeName: GripperController, Assembly-CSharp
         m_MethodName: GripperHBtn
         m_Mode: 3
@@ -7596,6 +7596,7 @@ MonoBehaviour:
   grip: {fileID: 701134714}
   store: {fileID: 578411717}
   dbData: 00000000000000000000000000000000000000000000000000000000
+  isReady: 1
 --- !u!1 &1001249321
 GameObject:
   m_ObjectHideFlags: 0
@@ -11891,8 +11892,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671908967}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.588, y: 1.634, z: -0.338}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5879786, y: 1.6340097, z: -0.33800006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14614,7 +14615,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1671908969}
         m_TargetAssemblyTypeName: GripperController, Assembly-CSharp
         m_MethodName: GripperVBtn
         m_Mode: 3

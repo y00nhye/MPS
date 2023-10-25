@@ -64,6 +64,8 @@ public class TransferController : MonoBehaviour
             yield return null;
         }
         transform.position = transfer_pos[state].position;
+
+        AutoMC.Instance.isReady = true;
     }
 
     public void TransferReset()

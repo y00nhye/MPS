@@ -21,6 +21,8 @@ public class DBManager : Singleton<DBManager>
     bool isDBRun;
     int dbConnectionCnt = 3; //db 연결 시도 횟수
 
+    MySqlDataReader reader;
+
     public string gpio;
 
     //public string gpio = "1000000";
@@ -37,7 +39,7 @@ public class DBManager : Singleton<DBManager>
         }
     }
 
-    private ConnectionState DBConnect() //DB에 연결하기 위해 Json에서 저장된 DB정보 파일을 읽어옴, Json이 없다면 DB정보를 저장하고 읽어옴 | ConnectionsState => 연결 상태를 반환해줌
+    private ConnectionState DBConnect() //DB에 연결하기 위해 Json에서 저장된 DB정보 파일을 읽어옴, Json이 없다면 DB정보를 저장하고 읽어옴 | ConnectionsState > 연결 상태를 반환해줌
     {
         try
         {
@@ -122,16 +124,31 @@ public class DBManager : Singleton<DBManager>
 
     public void SelectFromDB()
     {
-        string select = "select * from mps";
+        //db 연결이 끊겨있다면 연결 재시도
+        if (conn.State != ConnectionState.Open)
+        {
+            Debug.Log("DB 연결 재시도");
+            if (DBConnect() != ConnectionState.Open)
+            {
+                Debug.Log("DB 연결 실패");
+                return;
+            }
+        }
 
         try
         {
+            string select = "select * from mps";
+
             MySqlCommand cmd = new MySqlCommand(select, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
+            reader = cmd.ExecuteReader();
+            if (!reader.HasRows) return; //값이 존재하는지 확인
 
             while (reader.Read())
             {
-                gpio = $"{reader["gpio"]}";
+                if (!reader.IsDBNull(0)) //null 값 체크
+                {
+                    gpio = $"{reader["gpio"]}";
+                }
             }
 
             reader.Close();
@@ -139,6 +156,11 @@ public class DBManager : Singleton<DBManager>
         catch (System.Exception e)
         {
             Debug.Log(e.ToString());
+        }
+        finally
+        {
+            if (reader != null && !reader.IsClosed)
+                reader.Close();
         }
     }
 
@@ -156,6 +178,65 @@ public class DBManager : Singleton<DBManager>
         catch (System.Exception e)
         {
             Debug.Log(e.ToString());
+        }
+    }
+
+    private void DefectStatus()
+    {
+
+        if (conn.State != ConnectionState.Open)
+        {
+            Debug.Log("DB 연결 재시도");
+            if (DBConnect() != ConnectionState.Open)
+            {
+                Debug.Log("DB 연결 실패");
+                return;
+            }
+        }
+
+
+        try
+        {
+
+            string sql = @"SELECT CMP_EQ_ID, QLTY_RSLT, BAD_CD, COUNT(BAD_CD)
+                        FROM prc_qlty_tb
+                        WHERE CMP_EQ_ID = 'EQ02' AND QLTY_RSLT = 'NG'  AND NOW()
+                        UNION all
+
+                        SELECT CMP_EQ_ID, QLTY_RSLT, BAD_CD, COUNT(BAD_CD)
+                        FROM prc_qlty_tb
+                        WHERE CMP_EQ_ID = 'EQ05'  AND QLTY_RSLT = 'NG'AND NOW()
+                        UNION all
+
+                        SELECT CMP_EQ_ID, QLTY_RSLT, BAD_CD, COUNT(BAD_CD)
+                        FROM prc_qlty_tb
+                        WHERE CMP_EQ_ID = 'EQ06' AND QLTY_RSLT = 'NG'  AND NOW(); ";
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            reader = cmd.ExecuteReader();
+            if (!reader.HasRows) return;
+            while (reader.Read())
+            {
+                switch (reader["CMP_EQ_ID"].ToString())
+                {
+                    case "EQ02":
+                        if (!reader.IsDBNull(3))
+                        {
+                            //dbData.Defect_Top = int.Parse(reader[3].ToString()); dbData.Defect_Bottom = int.Parse(reader[3].ToString());
+                        }
+                        break;
+                }
+            }
+            reader.Close();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError(ex);
+        }
+        finally
+        {
+            if (reader != null && !reader.IsClosed)
+                reader.Close();
         }
     }
 }

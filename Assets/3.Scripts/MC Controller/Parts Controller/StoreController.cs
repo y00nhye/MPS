@@ -33,6 +33,8 @@ public class StoreController : MonoBehaviour
             yield return null;
         }
         transform.position = store_pos[state].position;
+
+        AutoMC.Instance.isReady = true;
     }
 
     public void StoreReset()

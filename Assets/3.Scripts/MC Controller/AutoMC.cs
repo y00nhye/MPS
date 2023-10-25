@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoMC : MonoBehaviour
+public class AutoMC : Singleton<AutoMC>
 {
     [Header("Auto generate Parts")]
     [SerializeField] SupplyerController supplyer;
@@ -17,6 +17,11 @@ public class AutoMC : MonoBehaviour
 
     DataSpliter spliter;
 
+    public bool isSimulationOn = false;
+    public bool isReady = true;
+
+    int simulCnt;
+
     private void Awake()
     {
         spliter = FindObjectOfType<DataSpliter>();
@@ -24,13 +29,68 @@ public class AutoMC : MonoBehaviour
 
     private void Update()
     {
-        AutoStart();
+        /*if (!isSimulationOn)
+        {
+            DBDataUpdate();
+        }*/
+
+        if (isSimulationOn)
+        {
+            if (isReady)
+            {
+                isReady = false;
+
+                switch (simulCnt)
+                {
+                    case 0:
+                        supplyer.SupplyBtn(1);
+                        break;
+                    case 1:
+                        transfer.TransferBtn(1);
+                        break;
+                    case 2:
+                        conveyor.ConveyorBtn(1);
+                        break;
+                    case 3:
+                        gripper.GripperVBtn(1);
+                        break;
+                    case 4:
+                        grip.GripBtn(1);
+                        break;
+                    case 5:
+                        gripper.GripperVBtn(0);
+                        break;
+                    case 6:
+                        gripper.GripperHBtn(1);
+                        break;
+                    case 7:
+                        store.StoreBtn(1);
+                        break;
+                    case 8:
+                        gripper.GripperVBtn(1);
+                        break;
+                    case 9:
+                        grip.GripBtn(0);
+                        break;
+                    case 10:
+                        gripper.GripperVBtn(0);
+                        break;
+                    default:
+                        isSimulationOn = false;
+                        break;
+                }
+
+                Debug.Log(simulCnt);
+                simulCnt++;
+
+            }
+        }
     }
 
-    public void AutoStart()
+    public void DBDataUpdate()
     {
         dbData = spliter.SplitData();
-        
+
         for (int i = 0; i < dbData.Length; i++)
         {
             switch (i)
@@ -59,5 +119,12 @@ public class AutoMC : MonoBehaviour
 
             }
         }
+    }
+
+    public void Simulation()
+    {
+        simulCnt = 0;
+        isSimulationOn = true;
+        isReady = true;
     }
 }
