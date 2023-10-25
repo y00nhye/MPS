@@ -76,7 +76,8 @@ public class AutoMC : Singleton<AutoMC>
                         gripper.GripperVBtn(0);
                         break;
                     default:
-                        isSimulationOn = false;
+                        Simulation();
+                        simulCnt--;
                         break;
                 }
 
@@ -126,5 +127,13 @@ public class AutoMC : Singleton<AutoMC>
         simulCnt = 0;
         isSimulationOn = true;
         isReady = true;
+    }
+    public void simulationStop()
+    {
+        simulCnt = 0;
+        isSimulationOn = false;
+        isReady = false;
+
+        FindObjectOfType<SupplyerController>().Reset_MC();
     }
 }

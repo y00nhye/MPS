@@ -70,6 +70,7 @@ public class ConveyorController : MonoBehaviour
         if(MC_state == 2)
         {
             plate.SetActive(false);
+            AutoMC.Instance.Simulation();
         }
         else
         {
